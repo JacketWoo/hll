@@ -1,0 +1,30 @@
+#!/bin/bash
+mycluster1="
+";
+mycluster2="
+xxx.xxx.xxxx.xxxx
+xxx.xxx.xxxx.xxxx
+xxx.xxx.xxxx.xxxx
+xxx.xxx.xxxx.xxxx
+xxx.xxx.xxxx.xxxx
+xxx.xxx.xxxx.xxxx
+xxx.xxx.xxxx.xxxx
+xxx.xxx.xxxx.xxxx
+xxx.xxx.xxxx.xxxx
+xxx.xxx.xxxx.xxxx
+xxx.xxx.xxxx.xxxx
+xxx.xxx.xxxx.xxxx
+xxx.xxx.xxxx.xxxx
+xxx.xxx.xxxx.xxxx
+xxx.xxx.xxxx.xxxx
+"
+
+HOSTS=$mycluster2
+
+for host in ${HOSTS[@]}
+do
+    tmux split-window -h "ssh $host"
+    tmux select-pane -t 0
+    tmux select-layout tiled
+done
+tmux set-window-option synchronize-panes on

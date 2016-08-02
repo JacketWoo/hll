@@ -1,0 +1,22 @@
+#!/bin/bash
+
+username="wxf"
+
+mycluster1="
+";
+
+mycluster2="
+xxx.xxx.xxx.xxx.com
+xxx.xxx.xxx.xxx.com
+xxx.xxx.xxx.xxx.com
+";
+
+Mchs=$mycluster2;
+
+for Mch in $Mchs;
+do
+    echo "=============$Mch==============="
+    ssh -t $username@$Mch "sudo yum install -y expect" 
+    echo ""
+done
+
