@@ -1,30 +1,29 @@
 #!/bin/bash
-mycluster1="
+# Usage:
+# in normal terminal,
+# [ wxf@myhost ] tmux new-session ./mssh
+# or in tmux mode terminal:
+# [ wxf@myhost ] ./mssh
+
+my_cluster_hosts="
+xxx.xxx.xxx.xxx.xxx
+xxx.xxx.xxx.xxx.xxx
+xxx.xxx.xxx.xxx.xxx
+xxx.xxx.xxx.xxx.xxx
+xxx.xxx.xxx.xxx.xxx
+xxx.xxx.xxx.xxx.xxx
+xxx.xxx.xxx.xxx.xxx
+xxx.xxx.xxx.xxx.xxx
+xxx.xxx.xxx.xxx.xxx
 ";
-mycluster2="
-xxx.xxx.xxxx.xxxx
-xxx.xxx.xxxx.xxxx
-xxx.xxx.xxxx.xxxx
-xxx.xxx.xxxx.xxxx
-xxx.xxx.xxxx.xxxx
-xxx.xxx.xxxx.xxxx
-xxx.xxx.xxxx.xxxx
-xxx.xxx.xxxx.xxxx
-xxx.xxx.xxxx.xxxx
-xxx.xxx.xxxx.xxxx
-xxx.xxx.xxxx.xxxx
-xxx.xxx.xxxx.xxxx
-xxx.xxx.xxxx.xxxx
-xxx.xxx.xxxx.xxxx
-xxx.xxx.xxxx.xxxx
-"
 
-HOSTS=$mycluster2
-
+HOSTS=${my_cluster_hosts}
+tmux new-window "ssh ${HOSTS[0]}"
+unset ${HOSTS[0]}
 for host in ${HOSTS[@]}
 do
     tmux split-window -h "ssh $host"
-    tmux select-pane -t 0
     tmux select-layout tiled
 done
+tmux select-pane -t 0
 tmux set-window-option synchronize-panes on
